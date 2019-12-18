@@ -1,0 +1,167 @@
+\documentclass[12pt, a4paper, twoside]{report}
+
+%---- GENERAL ---%
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{lmodern}
+\usepackage{capt-of}
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{textcomp}
+
+
+
+\usepackage[titles]{tocloft}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}} % Dots for chapters and sections
+\usepackage[colorlinks=true,urlcolor=blue,pdfstartview=FitH,linkcolor=blue,hyperfootnotes=true]{hyperref} % links
+
+
+\usepackage{glossaries}
+\makeglossaries
+
+
+\usepackage{enumitem} % Lists
+\usepackage{ulem} % Underline / Overline / ...
+\usepackage{booktabs, tabularx} % better tables \toprule \midrule ect...
+\usepackage{graphicx} % Figures
+\usepackage{color}
+\definecolor{darkblue}{RGB}{0,0,190}
+\definecolor{lightgray}{gray}{0.70}
+\definecolor{darkgreen}{RGB}{0,150,50}
+
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+%---- HEADERS & FOOTERS ---%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\fancyhf{}
+
+\fancyhead[RO, LE]{\chaptername{} \thechapter{} - \nouppercase{\rightmark}} % Even page - Right side
+\fancyhead[RE, LO]{\thepage} % Even page - Left side
+\fancyfoot[C]{\thepage} % Footer - Center
+\setlength{\headheight}{15.5pt} % at least 15.4533
+
+\newcommand{\clearemptydoublepage}{\newpage{\pagestyle{empty}\cleardoublepage}} % Removes headers / footers from empty pages
+
+%---- CHAPTERS ---%
+\usepackage[Lenny]{fncychap}
+
+
+\usepackage{listings} % Codes sources
+
+% [style = sourceC] for the C codes
+\lstdefinestyle{sourceC}{language=C, basicstyle=\small\color{black}\ttfamily, classoffset=0, keywordstyle=\color{blue}\bfseries, classoffset=1, morekeywords={NULL}, keywordstyle=\color{magenta}\bfseries, commentstyle=\color{brightblue}\itshape, stringstyle=\color{darkgreen}, showstringspaces=false, tabsize=3, framexleftmargin=2mm, frame=shadowbox, rulesepcolor=\color{lightgray}, breaklines=true, emph={main, printf, scanf, FILE, fopen, fscanf, fprintf, fclose, rand}, emphstyle=\color{darkblue}\bfseries,columns=
+fullflexible, flexiblecolumns=true, upquote=true, keepspaces=true}
+
+% [style = inlineSourceC] for C expression into text
+\lstdefinestyle{inlineSourceC}{language=C, basicstyle=\footnotesize\color{black}\ttfamily, classoffset=0, keywordstyle=\color{blue}\bfseries, classoffset=1, morekeywords={NULL}, keywordstyle=\color{magenta}\bfseries, commentstyle=\color{brightblue}\itshape, stringstyle=\color{darkgreen}, showstringspaces=false, tabsize=3, breaklines=true, emph={main, printf, scanf, FILE, fopen, fscanf, fprintf, fclose, rand}, emphstyle=\color{darkblue}\bfseries,columns=fullflexible, keepspaces=true,upquote=true}
+
+% [style = sourceJava] for the Java codes
+\lstdefinestyle{sourceJava}{language=Java, basicstyle=\small\color{black}\ttfamily, classoffset=0, keywordstyle=\color{darkgreen}\bfseries, commentstyle=\color{brightblue}\itshape, stringstyle=\color{darkgreen}, showstringspaces=false, tabsize=3, framexleftmargin=2mm, frame=shadowbox, rulesepcolor=\color{lightgray}, breaklines=true, emph={main, printf, FILE, fopen, fscanf, fprintf, fclose,new,return,this,super,null,break,continue,if,else,switch,case,default,do,while,for,break,new,return}, emphstyle=\color{darkred}\bfseries,columns=fullflexible,upquote=true}
+
+% [style = sourceJava] for the Java codes
+\lstdefinestyle{inlineSourceJava}{style=sourceJava, basicstyle=\normalsize\color{black}\ttfamily}
+
+% [style = msgTerminal] for shell codes on black background
+\lstdefinestyle{msgTerminal}{language=sh, basicstyle=\small\color{white}\ttfamily, keywordstyle=\color{white}, commentstyle=\color{white}\itshape, stringstyle=\color{white}, showstringspaces=false, framexleftmargin=3mm, xleftmargin=3mm, frame=none, tabsize=3, backgroundcolor=\color{black}, rulecolor=\color{black}, breaklines=true,columns=fullflexible,upquote=true}
+
+% [style = msgTerminalW] for shell codes on white background
+\lstdefinestyle{msgTerminalW}{language=sh, basicstyle=\small\color{black}\ttfamily, keywordstyle=\color{black}, commentstyle=\color{black}\itshape, stringstyle=\color{black}, showstringspaces=false, framexleftmargin=3mm, xleftmargin=3mm, frame=none, tabsize=3, backgroundcolor=\color{white}, rulecolor=\color{white}, breaklines=true,columns=fullflexible,upquote=true}
+
+% [style = inlineTerminal] for shell expression into text
+\lstdefinestyle{inlineTerminal}{
+language=sh,
+basicstyle=\footnotesize\color{black}\ttfamily\bfseries,
+keywordstyle=\color{black},
+commentstyle=\color{black}\itshape,
+stringstyle=\color{black}\itshape,
+showstringspaces=false,
+tabsize=3,
+breaklines=true,
+upquote=true
+}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\footnotesize\color{black}\ttfamily\bfseries,
+otherkeywords={self},
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+showstringspaces=false,
+numbers=left,
+tabsize=3,
+breaklines=true,
+}}
+
+
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\pythonexternal[2][]{{
+\pythonstyle
+\lstinputlisting[#1]{#2}}}
+
+% Python for inline
+\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+
+
+\usepackage[french]{algorithm2e} % Algorithmes 
+\newenvironment{algo}[0]{\vrule~\vrule\itshape \begin{algorithm}[H] }{\normalfont\end{algorithm}}
+\newcommand{\var}[1]{\textnormal{\texttt{#1}}}
+\RestyleAlgo{plain}
+\SetKwSwitch{Selon}{Cas}{Autre}{selon}{faire}{cas où}{autres cas}{fin}{fin} %Si la compilation bloque à algorithm2e, tenter la ligne du dessous à la place de celle-là
+%\SetKwSwitch{Selon}{Cas}{Autre}{selon}{faire}{cas où}{autres cas}{fin}
+\SetKwRepeat{Repeter}{r\'ep\'eter}{tant que}
+\SetKwFor{uTq}{tant que}{faire}{} % Tant que sans fin (équivaut a uSi)
+\SetKwFor{oTq}{}{}{fin} % Tant que déjà ouvert, donc sans balise de depart
+\SetKwIF{oSi}{}{}{}{}{}{}{fin}
+\SetKwIF{oFn}{}{}{fonction}{}{}{}{fin}
+\SetKwFunction{KwFn}{Fn}
+
+
+%---- DOCUMENT ---%
+% COMPILATION :
+% pdflatex skeleton.tex
+% bibtex skeleton
+% makeglossaries skeleton
+% pdflatex skeleton.tex
+% pdflatex skeleton.tex
+
+
+\title{\textbf{Project title} \\ \Large{--- Company --- \\ \textit{Team name}} \\ \vspace{1,5cm} \includegraphics[width=0.3\textwidth]{./img/logo.png}}
+\date{\today}
+\author{Author 1 \and Author 2}
+
+
+\begin{document}
+	\maketitle
+    \tableofcontents
+
+    \input{chapters/introduction}
+    %\input{chapters/body}
+    %\input{chapters/conclusion}
+
+    \addcontentsline{toc}{chapter}{Glossaire} % add line to table of content
+    \printglossaries
+    \addcontentsline{toc}{chapter}{Bibliographie}
+    \bibliographystyle{alpha}
+    \bibliography{biblio/bibliography}
+
+\end{document}
