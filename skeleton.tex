@@ -8,6 +8,8 @@
 \usepackage{capt-of}
 \usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
 \usepackage{textcomp}
+\usepackage{setspace}
+\setstretch{1.2}
 
 
 
@@ -147,7 +149,7 @@ breaklines=true,
 
 \title{\textbf{Project title} \\ \Large{--- Company --- \\ \textit{Team name}} \\ \vspace{1,5cm} \includegraphics[width=0.3\textwidth]{./img/logo.png}}
 \date{\today}
-\author{Author 1 \and Author 2}
+\author{Charles Villard \and Maxime Lewandowski}
 
 
 \begin{document}
@@ -155,7 +157,7 @@ breaklines=true,
     \tableofcontents
 
     \input{chapters/introduction}
-    %\input{chapters/body}
+    \input{chapters/body}
     %\input{chapters/conclusion}
 
     \addcontentsline{toc}{chapter}{Glossaire} % add line to table of content
